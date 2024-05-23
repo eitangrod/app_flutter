@@ -17,13 +17,13 @@ class LoginScreen extends StatelessWidget {
 
 class Usuario {
   final String username;
-  final String password;
+  final String pass;
 
-  Usuario({required this.username, required this.password});
+  Usuario({required this.username, required this.pass});
 }
 
-List<String> users = ["eitan", "uri", "feier"];
-List<String> password = ["123", "456", "789"];
+List<String> users = ['eitan', 'uri', 'feier'];    
+List<String> pass = ['123', '456', '789'];
 
 class _LoginView extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
@@ -67,8 +67,8 @@ class _LoginView extends StatelessWidget {
               String username = userController.text;
               String password = userController1.text;
 
-              if (username == 'username') {
-                if (password == 'password') {
+              if (users.contains(username)) {
+                if (pass.contains(password))  {
                   print('Login correcto');
                   context.pushNamed(HomeScreen.name,
                       extra: userController.text);
