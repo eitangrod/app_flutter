@@ -15,6 +15,16 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
+class Usuario {
+  final String username;
+  final String password;
+
+  Usuario({required this.username, required this.password});
+}
+
+List<String> users = ["eitan", "uri", "feier"];
+List<String> password = ["123", "456", "789"];
+
 class _LoginView extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
   final TextEditingController userController1 = TextEditingController();
@@ -24,7 +34,7 @@ class _LoginView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-          Padding(
+        Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             controller: userController,
@@ -39,63 +49,46 @@ class _LoginView extends StatelessWidget {
             ),
           ),
         ),
-         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child:      TextField(
-                enableInteractiveSelection: false,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                  prefixIcon: Icon(Icons.key),
-                ),
-                controller: userController1,
-              )
-          ),
-        const SizedBox(height: 16),     
-          ElevatedButton(
-                onPressed: () {        
-                  String username = userController.text;
-                  String password = userController1.text;
-
-                  if (username == 'username') {
-                   if (password == 'password') {
-                    print('Login correcto');
-                  context.pushNamed(HomeScreen.name, extra: userController.text); 
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content:const Text('Login correcto',
-                      style: TextStyle(fontSize: 20)),
-                      backgroundColor: Colors.blue,) 
-                      );
-                  }
-                   else {
-                    print('Contraseña fallida');
-                  }
-                  } 
-                  else {
-                    print('Usuario fallido');
-                  }
-                  if (username == '') {
-                  
-                    print('Login vacio');
-                  } 
-                }, 
-                child: const Text('Login')
+        Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              enableInteractiveSelection: false,
+              obscureText: true,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: 'Password',
+                prefixIcon: Icon(Icons.key),
               ),
-               ],
-            );
-          }
-        }
+              controller: userController1,
+            )),
+        const SizedBox(height: 16),
+        ElevatedButton(
+            onPressed: () {
+              String username = userController.text;
+              String password = userController1.text;
 
-
-class Usuario {
-  final String username;
-  final String password;
-
-  Usuario({required this.username, required this.password});
+              if (username == 'username') {
+                if (password == 'password') {
+                  print('Login correcto');
+                  context.pushNamed(HomeScreen.name,
+                      extra: userController.text);
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text('Login correcto',
+                        style: TextStyle(fontSize: 20)),
+                    backgroundColor: Colors.blue,
+                  ));
+                } else {
+                  int index = username.indexOf(username);
+                  if (password[index] != password) ;
+                  print('Contraseña fallida');
+                }
+              }
+              if (!users.contains(username)) {
+                print('Login no existe');
+              }
+            },
+            child: const Text('Login')),
+      ],
+    );
+  }
 }
-List<Usuario> usuarios = [
-  Usuario(username: "usuario1", password: "aaaaaa"),
-  Usuario(username: "usuario2", password: "bbbbbb"),
-];
