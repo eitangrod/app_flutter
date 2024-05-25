@@ -15,19 +15,12 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-class Usuario {
-  final String username;
-  final String pass;
-
-  Usuario({required this.username, required this.pass});
-}
-
 List<String> users = ['eitan', 'uri', 'feier'];    
 List<String> pass = ['123', '456', '789'];
 
 class _LoginView extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
-  final TextEditingController userController1 = TextEditingController();
+  final TextEditingController passController = TextEditingController();
   _LoginView();
   @override
   Widget build(BuildContext context) {
@@ -49,6 +42,7 @@ class _LoginView extends StatelessWidget {
             ),
           ),
         ),
+
         Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
@@ -59,32 +53,43 @@ class _LoginView extends StatelessWidget {
                 labelText: 'Password',
                 prefixIcon: Icon(Icons.key),
               ),
-              controller: userController1,
+              controller: passController,
             )),
         const SizedBox(height: 16),
         ElevatedButton(
             onPressed: () {
               String username = userController.text;
-              String password = userController1.text;
-
-              if (users.contains(username)) {
-                if (pass.contains(password))  {
-                  print('Login correcto');
-                  context.pushNamed(HomeScreen.name,
-                      extra: userController.text);
+              String password = passController.text;
+                            
+                  
+          
+                  int index = users.indexOf(username);  
+                if (pass[index] != password){
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: const Text('Login correcto',
+                    content: const Text('Contraseña incorrecta',
                         style: TextStyle(fontSize: 20)),
-                    backgroundColor: Colors.blue,
+                    backgroundColor: const Color.fromARGB(255, 8, 64, 110),
                   ));
                 } else {
-                  int index = username.indexOf(username);
-                  if (password[index] != password) ;
-                  print('Contraseña fallida');
+                 
+               if (users.contains(username)) {
+              if (pass.contains(password))
+               context.pushNamed(HomeScreen.name,
+                      extra: userController.text);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text('Login correcto',
+                        style: TextStyle(fontSize: 20)),
+                    backgroundColor: const Color.fromARGB(255, 8, 64, 110),
+                  ));
                 }
               }
               if (!users.contains(username)) {
-                print('Login no existe');
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text('Login no existe',
+                        style: TextStyle(fontSize: 20)),
+                    backgroundColor: const Color.fromARGB(255, 8, 64, 110),
+                  ));
+             
               }
             },
             child: const Text('Login')),
