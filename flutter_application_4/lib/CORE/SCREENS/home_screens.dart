@@ -31,10 +31,6 @@ class HomeScreen extends StatelessWidget {
     '1/10',
   ];
   
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

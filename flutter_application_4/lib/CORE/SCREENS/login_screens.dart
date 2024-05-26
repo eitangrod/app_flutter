@@ -62,35 +62,26 @@ class _LoginView extends StatelessWidget {
               String password = passController.text;
                             
                   
-          
-                  int index = users.indexOf(username);  
-                if (pass[index] != password){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: const Text('Contraseña incorrecta',
-                        style: TextStyle(fontSize: 20)),
-                    backgroundColor: const Color.fromARGB(255, 8, 64, 110),
-                  ));
-                } else {
-                 
-               if (users.contains(username)) {
-              if (pass.contains(password))
-               context.pushNamed(HomeScreen.name,
-                      extra: userController.text);
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: const Text('Login correcto',
-                        style: TextStyle(fontSize: 20)),
-                    backgroundColor: const Color.fromARGB(255, 8, 64, 110),
-                  ));
-                }
-              }
-              if (!users.contains(username)) {
+         if (!users.contains(username)) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: const Text('Login no existe',
-                        style: TextStyle(fontSize: 20)),
-                    backgroundColor: const Color.fromARGB(255, 8, 64, 110),
-                  ));
-             
+                content: const Text('Login no existe', style: TextStyle(fontSize: 20)),
+                backgroundColor: const Color.fromARGB(255, 8, 64, 110),
+              ));
+            } else {
+              int index = users.indexOf(username);
+              if (pass[index] != password) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: const Text('Contraseña incorrecta', style: TextStyle(fontSize: 20)),
+                  backgroundColor: const Color.fromARGB(255, 8, 64, 110),
+                ));
+              } else {
+                context.pushNamed(HomeScreen.name, extra: userController.text);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: const Text('Login correcto', style: TextStyle(fontSize: 20)),
+                  backgroundColor: const Color.fromARGB(255, 8, 64, 110),
+                ));
               }
+            }
             },
             child: const Text('Login')),
       ],
