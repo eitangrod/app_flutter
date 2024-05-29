@@ -27,6 +27,7 @@ class _LoginView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: TextField(
@@ -60,11 +61,11 @@ class _LoginView extends StatelessWidget {
             onPressed: () {
               String username = userController.text;
               String password = passController.text;
-                            
-                  
+
+
          if (!users.contains(username)) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: const Text('Login no existe', style: TextStyle(fontSize: 20)),
+                content: const Text('Usuario no existe', style: TextStyle(fontSize: 20)),
                 backgroundColor: const Color.fromARGB(255, 8, 64, 110),
               ));
             } else {

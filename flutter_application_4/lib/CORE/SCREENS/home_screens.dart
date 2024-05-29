@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class HomeScreen extends StatelessWidget {
   static const String name = 'home';
   final String userName;
-   HomeScreen({super.key, this.userName = ''});
+  HomeScreen({super.key, this.userName = ''});
  
   List <String> movies =[
     'AVENGERS: INFINITY WAR',
