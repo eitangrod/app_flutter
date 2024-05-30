@@ -31,6 +31,24 @@ class HomeScreen extends StatelessWidget {
     '1/10',
   ];
   
+
+    
+  
+  final List<String> foto = [
+    'assets/download.jpg',
+    'assets/353959.webp',
+    'assets/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg',
+    'assets/caws.jpg',
+    'assets/avengers.jpg',
+    'assets/iron man.jpg',
+    'assets/cacv.jpg',
+    'assets/thor.jpg',
+    'assets/black panther.jpg',
+    'assets/spiderman.jpg',
+  
+  ];
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,15 +56,34 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Movies ranking'),
       ),
       body: ListView.builder(
-        itemCount:movies.length, 
-        itemBuilder: ((context, index) {
-        return Card(
-          child: ListTile(
-            title: Text(movies[index]),
-            subtitle: Text(top [index]),
-          ),
-        );
-      }))
-    );
+        itemCount: foto.length,
+        itemBuilder: (context, index) {
+          return Card(
+            margin: EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    foto[index],
+                    width: 100, 
+                    height: 130, 
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                     title: Text(movies[index]),
+                     subtitle: Text(top [index]),
+                      
+                  ),
+                ),
+            )],
+            ));
+
+      }));
+    
    }
 }
