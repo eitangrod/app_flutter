@@ -31,10 +31,7 @@ class HomeScreen extends StatelessWidget {
     '1/10',
   ];
   
-
-    
-  
-  final List<String> foto = [
+  List<String> foto = [
     'assets/download.jpg',
     'assets/353959.webp',
     'assets/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg',
@@ -80,10 +77,12 @@ class HomeScreen extends StatelessWidget {
                       
                   ),
                 ),
-            )],
-            ));
-
-      }));
-    
+               )
+             ],
+           )
+          );
+         }
+       )
+     ); 
    }
 }
