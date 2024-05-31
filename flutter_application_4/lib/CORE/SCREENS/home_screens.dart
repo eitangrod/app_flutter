@@ -56,7 +56,6 @@ class HomeScreen extends StatelessWidget {
         itemCount: foto.length,
         itemBuilder: (context, index) {
           return Card(
-            margin: EdgeInsets.all(10.0),
             child: Row(
               children: [
                 Padding(
@@ -73,8 +72,7 @@ class HomeScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                      title: Text(movies[index]),
-                     subtitle: Text(top [index]),
-                      
+                     subtitle: Text(top [index]),                    
                   ),
                 ),
                )
