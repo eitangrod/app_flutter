@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
     'SPIDER-MAN: NO WAY HAME',
   ];
 
-  List <String> top =[
+  List <String> reviews =[
     'El final de esta entrega se recordará siempre por ser uno de los mejores cliffhangers del cine. Los hermanos Russo logran algo impensable: que pese a la cantidad ingente de estrellas, todo funcione como un reloj. No hay ningún pero a esta entrega.',
     'La apuesta más arriesgada de Marvel hasta la fecha fue esta película, en la que todo funciona como un reloj. Su humor engrasa todas las piezas, y los actores conectan a la perfección. Si no fuera por el villano (otra vez), sería la primera de la lista.',
     'Era muy difícil superar lo que consiguieron con "Infinity War". Y por momentos están cerca de superarla, pero la sorpresa final de la anterior es imposible de rebasar. Aún así, es el homenaje perfecto a los fans y a 10 años de MCU, con mucho fan service, que nunca viene mal.',
@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget {
     'Encumbrada por las sorpresas que encierra su metraje, lo cierto es que la tercera entrega del Spidey de Tom Holland tiene una trama muy absurda y las peores set pieces de acción que recordamos en mucho tiempo en el MCU. Pero todo lo compensa con nostalgia con guiños al público y con un final bastante emotivo.',
   ];
   
-  List<String> foto = [
+  List<String> photos = [
     'assets/aiw.jpg',
     'assets/353959.webp',
     'assets/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg',
@@ -53,7 +53,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Movies ranking'),
       ),
       body: ListView.builder(
-        itemCount: foto.length,
+        itemCount: photos.length,
         itemBuilder: (context, index) {
           return Card(
             child: Row(
@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.asset(
-                    foto[index],
+                    photos[index],
                     width: 160, 
                     height: 160, 
                   ),
@@ -71,7 +71,7 @@ class HomeScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                      title: Text(movies[index]),
-                     subtitle: Text(top [index]),                    
+                     subtitle: Text(reviews[index]),                    
                   ),
                 ),
                )
