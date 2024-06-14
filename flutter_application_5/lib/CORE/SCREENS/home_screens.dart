@@ -1,11 +1,27 @@
+import 'dart:js_interop';
+
+import 'package:flutter_application_4/movie.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String name = 'home';
   final String userName;
   HomeScreen({super.key, this.userName = ''});
+ 
+List <Movie> movie =[
+Movie(
+  title: 'AVENGERS: INFINITY WAR', 
+  desc: 'El final de esta entrega se recordará siempre por ser uno de los mejores cliffhangers del cine. Los hermanos Russo logran algo impensable: que pese a la cantidad ingente de estrellas, todo funcione como un reloj. No hay ningún pero a esta entrega.', 
+  urlimg: 'assets/aiw.jpg'),
+  Movie(
+  title: 'GUARDIANS OF THE GALAXY', 
+  desc: 'La apuesta más arriesgada de Marvel hasta la fecha fue esta película, en la que todo funciona como un reloj. Su humor engrasa todas las piezas, y los actores conectan a la perfección. Si no fuera por el villano (otra vez), sería la primera de la lista.', 
+  urlimg: 'assets/353959.webp'),
+  
+] ;
 
- List <String> movies =[
+
+  List <String> movies =[
     'AVENGERS: INFINITY WAR',
     'GUARDIANS OF THE GALAXY',
     'AVENGERS: ENDGAME',
