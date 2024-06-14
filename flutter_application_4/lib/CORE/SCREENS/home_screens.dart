@@ -45,7 +45,6 @@ class HomeScreen extends StatelessWidget {
   
   ];
 
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +52,7 @@ class HomeScreen extends StatelessWidget {
         title: const Text('Movies ranking'),
       ),
       body: ListView.builder(
-        itemCount: movies.length,
+        itemCount: photos.length,
         itemBuilder: (context, index) {
           return Card(
             child: Row(
