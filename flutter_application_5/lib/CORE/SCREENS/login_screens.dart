@@ -1,5 +1,6 @@
 import 'package:flutter_application_4/CORE/SCREENS/home_screens.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_4/entities/users.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -15,8 +16,14 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-List<String> users = ['eitan', 'uri', 'feier'];    
-List<String> pass = ['123', '456', '789'];
+List<User> users = [
+User(name: 'eitan', pass: '123'),
+User(name: 'uri', pass: '456'),
+User(name: 'feier', pass: '789')
+
+
+]; 
+
 
 class _LoginView extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
@@ -61,25 +68,28 @@ class _LoginView extends StatelessWidget {
             onPressed: () {
               String username = userController.text;
               String password = passController.text;
+              
+              final user = users.firstWhere(
+                (user) => user.name == username,
+                orElse: () => User(name: '', pass: ''));
 
-
-         if (!users.contains(username)) {
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: const Text('Usuario no existe', style: TextStyle(fontSize: 20)),
-                backgroundColor: const Color.fromARGB(255, 8, 64, 110),
+        if (user.name == '') {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text('Usuario no existe', style: TextStyle(fontSize: 20)),
+                backgroundColor: Color.fromARGB(255, 8, 64, 110),
               ));
             } else {
-              int index = users.indexOf(username);
-              if (pass[index] != password) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: const Text('Contraseña incorrecta', style: TextStyle(fontSize: 20)),
-                  backgroundColor: const Color.fromARGB(255, 8, 64, 110),
+              
+              if (user.pass != password) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('Contraseña incorrecta', style: TextStyle(fontSize: 20)),
+                  backgroundColor: Color.fromARGB(255, 8, 64, 110),
                 ));
               } else {
                 context.pushNamed(HomeScreen.name, extra: userController.text);
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: const Text('Login correcto', style: TextStyle(fontSize: 20)),
-                  backgroundColor: const Color.fromARGB(255, 8, 64, 110),
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text('Login correcto', style: TextStyle(fontSize: 20)),
+                  backgroundColor: Color.fromARGB(255, 8, 64, 110),
                 ));
               }
             }
