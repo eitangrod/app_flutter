@@ -17,18 +17,16 @@ class LoginScreen extends StatelessWidget {
 }
 
 List<User> users = [
-User(name: 'eitan', pass: '123'),
-User(name: 'uri', pass: '456'),
-User(name: 'feier', pass: '789')
-
-
+User(name: 'Eitan', pass: '123'),
+User(name: 'Uri', pass: '456'),
+User(name: 'Feier', pass: '789')
 ]; 
-
 
 class _LoginView extends StatelessWidget {
   final TextEditingController userController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   _LoginView();
+ 
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -43,7 +41,7 @@ class _LoginView extends StatelessWidget {
               hintText: 'Username',
               prefixIcon: Icon(Icons.person),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
+              borderRadius: BorderRadius.all(
                   Radius.circular(8),
                 ),
               ),
@@ -56,13 +54,18 @@ class _LoginView extends StatelessWidget {
             child: TextField(
               enableInteractiveSelection: false,
               obscureText: true,
+              controller: passController,
               decoration: const InputDecoration(
-                border: OutlineInputBorder(),
                 labelText: 'Password',
                 prefixIcon: Icon(Icons.key),
+                border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                 ),
               ),
-              controller: passController,
-            )),
+            ),
+          ),
+        ),
         const SizedBox(height: 16),
         ElevatedButton(
             onPressed: () {
