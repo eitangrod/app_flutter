@@ -1,3 +1,4 @@
+import 'package:flutter_application_4/CORE/SCREENS/movie_detail_screen.dart';
 import 'package:flutter_application_4/entities/movie.dart';
 import 'package:flutter/material.dart';
 
@@ -61,6 +62,7 @@ List <Movie> movies =[
 
 ] ;
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,41 +73,51 @@ List <Movie> movies =[
         itemCount: movies.length,
         itemBuilder: (context, index) {
           final movie = movies[index];
-        return Card(
+       return Card(
             margin: const EdgeInsets.all(10),
-            child: Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Row(
-                children: [
-                  Image.network(
-                    movie.urlimg,
-                    width: 100,
-                    height: 150,
-                    fit: BoxFit.cover,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MovieDetailScreen(movie: movie),
                   ),
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          movie.title,
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          movie.desc,
-                          style: const TextStyle(
-                            fontSize: 14,
-                          ),
-                        ),
-                      ],
+                );
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Image.asset(
+                      movie.urlimg,
+                      width: 100,
+                      height: 150,
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                ],
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            movie.title,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            movie.desc,
+                            style: const TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
