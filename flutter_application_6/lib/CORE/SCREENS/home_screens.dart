@@ -85,44 +85,43 @@ List <Movie> movies =[
                 );
               },
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  children: [
-                    Image.asset(
-                      movie.urlimg,
-                      width: 100,
-                      height: 150,
-                      fit: BoxFit.cover,
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            movie.title,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Image.network(
+                    movie.urlimg,
+                    width: 100,
+                    height: 150,
+                    fit: BoxFit.cover,
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          movie.title,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
-                          const SizedBox(height: 10),
-                          Text(
-                            movie.desc,
-                            style: const TextStyle(
-                              fontSize: 14,
-                            ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          movie.desc,
+                          style: const TextStyle(
+                            fontSize: 14,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          );
+          ));
         },
       ),
     );
+   }
   }
-}
