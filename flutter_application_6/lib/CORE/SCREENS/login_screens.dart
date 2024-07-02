@@ -75,14 +75,19 @@ class _LoginView extends StatelessWidget {
               final user = users.firstWhere(
                 (user) => user.name == username,
                 orElse: () => User(name: '', pass: ''));
-
-        if (user.name == '') {
+        
+        if (user.name != username ) {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text('Usuario no existe', style: TextStyle(fontSize: 20)),
+                content: Text('Usuario incorrecto', style: TextStyle(fontSize: 20)),
                 backgroundColor: Color.fromARGB(255, 8, 64, 110),
               ));
             } else {
-              
+              if (user.name == '' ) {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text('Usuario vacio', style: TextStyle(fontSize: 20)),
+                backgroundColor: Color.fromARGB(255, 8, 64, 110),
+              ));
+              } else {
               if (user.pass != password) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Contraseña incorrecta', style: TextStyle(fontSize: 20)),
@@ -95,7 +100,7 @@ class _LoginView extends StatelessWidget {
                   backgroundColor: Color.fromARGB(255, 8, 64, 110),
                 ));
               }
-            }
+           } }
             },
             child: const Text('Login')),
       ],
