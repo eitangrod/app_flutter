@@ -76,7 +76,7 @@ class _LoginView extends StatelessWidget {
                 (user) => user.name == username,
                 orElse: () => User(name: '', pass: ''));
         
-        if (user.name != username ) {
+              if (user.name != username ) {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text('Usuario incorrecto', style: TextStyle(fontSize: 20)),
                 backgroundColor: Color.fromARGB(255, 8, 64, 110),
@@ -100,8 +100,9 @@ class _LoginView extends StatelessWidget {
                   backgroundColor: Color.fromARGB(255, 8, 64, 110),
                 ));
               }
-           } }
-            },
+            } 
+          }
+        },
             child: const Text('Login')),
       ],
     );
