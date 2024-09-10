@@ -13,16 +13,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
 class NamesList extends StatelessWidget {
   const NamesList({super.key});
-
   @override
   Widget build(BuildContext context) {
     final namesprovide = Provider.of<NamesModel>(context);
     
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Editable Names List'),
@@ -44,6 +40,7 @@ class NamesList extends StatelessWidget {
                           content: TextField(
                             controller: controller,
                           ),
+                          
                           actions: [
                             TextButton(
                               onPressed: () {

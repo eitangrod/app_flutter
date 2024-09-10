@@ -4,6 +4,7 @@ import '../../provider/names_provide.dart';
 
 class AddNameScreen extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
+  final TextEditingController _controller1 = TextEditingController();
 
   AddNameScreen({super.key});
 
@@ -21,6 +22,12 @@ class AddNameScreen extends StatelessWidget {
               controller: _controller,
               decoration: const InputDecoration(
                 labelText: 'Enter a new name',
+              ),
+            ),
+            TextField(
+              controller: _controller1,
+              decoration: const InputDecoration(
+                labelText: 'Enter a description',
               ),
             ),
             const SizedBox(height: 20),
