@@ -5,10 +5,12 @@ import 'add_movie_screen.dart';
 import 'edit_movie_screen.dart';
 
 class MovieListScreen extends StatelessWidget {
+  const MovieListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Lista de Películas de Marvel')),
+      appBar: AppBar(title: const Text('Lista de Películas de Marvel')),
       body: Consumer<MovieProvider>(
         builder: (context, movieProvider, child) {
           return ListView.builder(
@@ -17,7 +19,7 @@ class MovieListScreen extends StatelessWidget {
               final movie = movieProvider.movies[index];
               return Card(
                 elevation: 4,
-                margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
@@ -31,7 +33,7 @@ class MovieListScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(4),
                           bottomLeft: Radius.circular(4),
                         ),
@@ -44,23 +46,23 @@ class MovieListScreen extends StatelessWidget {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 movie.title,
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
                                 ),
                               ),
-                              SizedBox(height: 8),
+                              const SizedBox(height: 8),
                               Text(
                                 movie.desc,
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontSize: 14),
+                                style: const TextStyle(fontSize: 14),
                               ),
                             ],
                           ),
@@ -75,11 +77,11 @@ class MovieListScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => AddMovieScreen()),
+            MaterialPageRoute(builder: (context) => const AddMovieScreen()),
           );
         },
       ),

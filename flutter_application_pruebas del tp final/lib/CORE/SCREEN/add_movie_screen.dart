@@ -4,6 +4,8 @@ import '../entities/movie.dart';
 import '../providers/movie_provider.dart';
 
 class AddMovieScreen extends StatefulWidget {
+  const AddMovieScreen({super.key});
+
   @override
   _AddMovieScreenState createState() => _AddMovieScreenState();
 }

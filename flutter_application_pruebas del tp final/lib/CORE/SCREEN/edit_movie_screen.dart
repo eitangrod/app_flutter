@@ -6,7 +6,7 @@ import '../providers/movie_provider.dart';
 class EditMovieScreen extends StatefulWidget {
   final Movie movie;
 
-  EditMovieScreen({required this.movie});
+  const EditMovieScreen({super.key, required this.movie});
 
   @override
   _EditMovieScreenState createState() => _EditMovieScreenState();
@@ -104,7 +104,7 @@ class _EditMovieScreenState extends State<EditMovieScreen> {
                 movieProvider.deleteMovie(widget.movie.id);
                 Navigator.pop(context);
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('pelicula eliminada', style: TextStyle(fontSize: 20)),
+                  content: Text('Pelicula eliminada', style: TextStyle(fontSize: 20)),
                   backgroundColor: Color.fromARGB(255, 255, 0, 0),
                 ));
                 

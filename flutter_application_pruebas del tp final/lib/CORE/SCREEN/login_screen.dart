@@ -94,7 +94,7 @@ class _LoginView extends StatelessWidget {
                 ));
               } else {
                 Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => MovieListScreen()));
+                MaterialPageRoute(builder: (context) =>  MovieListScreen()));
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Login correcto', style: TextStyle(fontSize: 20)),
                   backgroundColor: Color.fromARGB(255, 8, 64, 110),
