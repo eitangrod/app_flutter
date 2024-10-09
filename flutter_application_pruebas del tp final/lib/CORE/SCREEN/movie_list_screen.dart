@@ -4,6 +4,7 @@ import '../providers/movie_provider.dart';
 import 'add_movie_screen.dart';
 import 'edit_movie_screen.dart';
 
+
 class MovieListScreen extends StatelessWidget {
   const MovieListScreen({super.key});
 
@@ -76,6 +77,7 @@ class MovieListScreen extends StatelessWidget {
           );
         },
       ),
+      
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../entities/users.dart';
 import 'movie_list_screen.dart';
 
+
 class LoginScreen extends StatelessWidget {
   static const String name = 'login';
 
