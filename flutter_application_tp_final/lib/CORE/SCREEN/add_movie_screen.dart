@@ -1,7 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_tp_final/CORE/entities/movies.dart';
 import 'package:flutter_application_tp_final/CORE/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: AddMovieScreen(),
+    );
+  }
+}
 
 class AddMovieScreen extends StatefulWidget {
   const AddMovieScreen({super.key});
@@ -58,32 +76,35 @@ class _AddMovieScreenState extends State<AddMovieScreen> {
             const SizedBox(height: 20),
             ElevatedButton(
               child: const Text('Guardar Película'),
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                  _formKey.currentState!.save();
-                  final movieProvider = Provider.of<MovieProvider>(context, listen: false);
-                  movieProvider.addMovie(
-                    Movie(
-                      id: DateTime.now().toString(),
-                      title: _title,
-                      desc: _description,
-                      urlimag: _imageUrl,
-                    ),
-                  );
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Pelicula guardada', style: TextStyle(fontSize: 20)),
-                  backgroundColor: Color.fromARGB(255, 0, 255, 0),
-                ));
-                } else {
-                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Por favor, rellen los campos', style: TextStyle(fontSize: 20)),
-                  backgroundColor: Color.fromARGB(255, 255, 0, 0),
-                ));
-                }
-              },
+              onPressed: () async {
+  if (_formKey.currentState!.validate()) {
+    _formKey.currentState!.save();
+    final movie = Movie(
+      id: '', 
+      title: _title,
+      desc: _description,
+      urlimag: _imageUrl,
+    );
+
+    final movieProvider = Provider.of<MovieProvider>(context, listen: false);
+    await movieProvider.addMovie(movie);
+
+    Navigator.pop(context);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Película guardada', style: TextStyle(fontSize: 20)),
+      backgroundColor: Color.fromARGB(255, 0, 255, 0),
+    ));
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('Por favor, rellene los campos',
+          style: TextStyle(fontSize: 20)),
+      backgroundColor: Color.fromARGB(255, 255, 0, 0),
+    ));
+  }
+}
+,
             ),
-        ],
+          ],
         ),
       ),
     );

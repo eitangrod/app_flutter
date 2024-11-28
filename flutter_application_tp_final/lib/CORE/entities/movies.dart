@@ -1,5 +1,4 @@
 class Movie {
-  final 
   String id;
   String title;
   String desc;

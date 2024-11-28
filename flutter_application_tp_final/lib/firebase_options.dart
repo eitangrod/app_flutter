@@ -71,5 +71,4 @@ class DefaultFirebaseOptions {
     authDomain: 'tp-final-de-dap.firebaseapp.com',
     storageBucket: 'tp-final-de-dap.firebasestorage.app',
   );
-
 }
