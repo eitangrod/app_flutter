@@ -1,111 +1,113 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_tp_final/CORE/SCREEN/movies_list_screen.dart';
-import '../entities/users.dart';
 
 
-class LoginScreen extends StatelessWidget {
-  static const String name = 'login';
-
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Future<void> _login() async {
+    if (_formKey.currentState!.validate()) {
+      final username = _usernameController.text.trim();
+      final password = _passwordController.text.trim();
+
+      final querySnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('username', isEqualTo: username)
+          .where('password', isEqualTo: password)
+          .get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MovieListScreen()),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Usuario o contraseña incorrectos'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _LoginView(),
-    );
-  }
-}
-
-List<User> users = [
-User(name: 'Eitan', pass: '123'),
-User(name: 'Uri', pass: '456'),
-User(name: 'Feier', pass: '789')
-]; 
-
-class _LoginView extends StatelessWidget {
-  final TextEditingController userController = TextEditingController();
-  final TextEditingController passController = TextEditingController();
-  _LoginView();
- 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: TextField(
-            controller: userController,
-            decoration: const InputDecoration(
-              hintText: 'Username',
-              prefixIcon: Icon(Icons.person),
-              border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
+      appBar: AppBar(title: const Text('Inicio de Sesión')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextFormField(
+                    controller: _usernameController,
+                    decoration: InputDecoration(
+                      labelText: 'Usuario',
+                      prefixIcon: const Icon(Icons.person),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, ingrese su usuario';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 16.0),
+                  TextFormField(
+                    controller: _passwordController,
+                    decoration: InputDecoration(
+                      labelText: 'Contraseña',
+                      prefixIcon: const Icon(Icons.lock),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                    ),
+                    obscureText: true,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Por favor, ingrese su contraseña';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 24.0),
+                  ElevatedButton(
+                    onPressed: _login,
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 12.0, horizontal: 24.0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                    ),
+                    child: const Text('Iniciar Sesión',
+                        style: TextStyle(fontSize: 16.0)),
+                  ),
+                ],
               ),
             ),
           ),
         ),
-
-        Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: TextField(
-              enableInteractiveSelection: false,
-              obscureText: true,
-              controller: passController,
-              decoration: const InputDecoration(
-                labelText: 'Password',
-                prefixIcon: Icon(Icons.key),
-                border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                 ),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 16),
-        ElevatedButton(
-            onPressed: () {
-              String username = userController.text;
-              String password = passController.text;
-              
-              final user = users.firstWhere(
-                (user) => user.name == username,
-                orElse: () => User(name: '', pass: ''));
-        
-              if (user.name != username ) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text('Usuario incorrecto', style: TextStyle(fontSize: 20)),
-                backgroundColor: Color.fromARGB(255, 255, 0, 0),
-              ));
-            } else {
-              if (user.name == '' ) {
-              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text('Usuario vacio', style: TextStyle(fontSize: 20)),
-                backgroundColor: Color.fromARGB(255, 255, 0, 0),
-              ));
-              } else {
-              if (user.pass != password) {
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Contraseña incorrecta', style: TextStyle(fontSize: 20)),
-                  backgroundColor: Color.fromARGB(255, 255, 0, 0),
-                ));
-              } else {
-                Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) =>  MovieListScreen()));
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Login correcto', style: TextStyle(fontSize: 20)),
-                  backgroundColor: Color.fromARGB(255, 8, 64, 110),
-                ));
-              }
-            } 
-          }
-        },
-            child: const Text('Login')),
-      ],
+      ),
     );
   }
 }
